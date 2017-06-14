@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20170613125226) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    
 
     
   end

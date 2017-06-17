@@ -1,0 +1,20 @@
+ <div>
+   <h1><%= @registered_application.name %></h1><br>
+   <% user = User.find_by id: @registered_application.user_id %>
+     <small>
+       submitted <%= time_ago_in_words(@registered_application.created_at) %> ago by <%= user.email %>
+     </small>
+ </div>
+ <div class="row">
+   <div class="col-md-8">
+     <p><%= @registered_application.name %></p>
+     <% url = 'https://' +  @registered_application.url %>
+     <p><%= link_to(@registered_application.url, url) %></p>
+     
+   </div>
+     <div class="col-md-8">
+       <%= link_to "Exit", root_path, class: 'btn btn-warning' %>
+       <%= link_to "Unregister Application", @registered_application, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to unregister this application?' } %>
+     </div>
+     
+ </div>

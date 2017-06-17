@@ -1,6 +1,24 @@
 <div class="container">
-    <div class="form-group">
-        <label><h1>Welcome#index</h1></label>
-        <p>Find me in app/views/welcome/index.html.erb</p>
-    </div>
+    <% @user = current_user %>
+    <% if @user != nil %>
+      <p>Welome to Blocmetrics <%= @user.email %></p>
+      
+      <div class="col-md-8">
+        
+        <p>Would you like to register a new Application?</p>
+        
+        <%= link_to "Register an Application", new_registered_application_path, class: 'btn btn-success' %>
+
+        <p>Would you like to view your Registered Applications?</p>
+        
+        <%= link_to "View Register Application", registered_applications_path, class: 'btn btn-success' %>
+    
+
+    <% else %>
+      <div class="col-md-6">
+        <p>Would you like to login or sign up?</p>
+      </div>  
+    <% end %>
 </div>
+
+

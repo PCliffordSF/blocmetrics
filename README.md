@@ -26,3 +26,18 @@ Things you may want to cover:
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
+
+this is th client side JS in the blocipedia app used to create new events in blocmetrics
+
+  var blocmetrics = {};
+  
+     blocmetrics.report = function(eventName){
+     
+     var event = {event: { name: eventName }};
+     var request = new XMLHttpRequest();
+     
+     request.open("POST", "http://localhost:3000/api/events", true);
+     request.setRequestHeader('Content-Type', 'application/json');
+     request.send(JSON.stringify(event));
+     
+  };

@@ -11,6 +11,7 @@
      headers['Access-Control-Allow-Headers'] = 'Content-Type'
      
    end
+   
 
    skip_before_action :verify_authenticity_token
  

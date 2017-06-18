@@ -9,6 +9,8 @@
          <div class="media-body">
            <h4 class="media-heading">
              <%= link_to registered_application.name, registered_application %>
+             <br/>
+             <small>submitted <%= time_ago_in_words(registered_application.created_at) %> ago</small>
            </h4>
     
            <p>

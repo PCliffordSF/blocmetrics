@@ -10,7 +10,8 @@
    <div class="col-md-8">
      <p><%= @registered_application.name %></p>
      
-     <% url = 'https://' +  @registered_application.url %>
+     
+     <% url = @registered_application.url %>
      <p><%= link_to(@registered_application.url, url) %></p>
      <br></br>
     

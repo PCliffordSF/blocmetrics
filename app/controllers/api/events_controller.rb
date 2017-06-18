@@ -17,13 +17,19 @@
  
    def create
         registered_application = RegisteredApplication.find_by(url: request.env['HTTP_ORIGIN'])
+
         if registered_application
             @new_event = Event.new(event_params)
             @new_event.registered_application_id = registered_application.id
             if @new_event.save
+                puts '----------------------'
+                puts @new_event
+                puts '----------------------'
                 render json: @new_event, status: :created
             else
+
                 render json: {errors: @event.errors}, status: :unprocessable_entity
+                
             end
         else
             render json: "Unregistered application", status: :unprocessable_entity

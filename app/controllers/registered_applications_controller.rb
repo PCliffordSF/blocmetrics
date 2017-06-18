@@ -43,6 +43,7 @@ class RegisteredApplicationsController < ApplicationController
 
   def index
     @registered_applications = RegisteredApplication.all
+    @registered_applications = @registered_applications.reverse #this feels like a dirty way to sort by time
     render :index
   end
 

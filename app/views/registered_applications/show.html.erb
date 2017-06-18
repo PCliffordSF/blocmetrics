@@ -15,7 +15,8 @@
      <p><%= link_to(@registered_application.url, url) %></p>
      <br></br>
     
-   <p>These are the <%= @events.count %> events associated with this application</p> 
+   <%= pie_chart @registered_application.events.group(:name).count %>
+   <%= line_chart @registered_application.events.group_by_day(:created_at).count %>
    <% @events.each do |event| %>
      <p><%= event[0] %></p>
    

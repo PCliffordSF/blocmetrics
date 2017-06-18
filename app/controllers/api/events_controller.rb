@@ -22,9 +22,6 @@
             @new_event = Event.new(event_params)
             @new_event.registered_application_id = registered_application.id
             if @new_event.save
-                puts '----------------------'
-                puts @new_event
-                puts '----------------------'
                 render json: @new_event, status: :created
             else
 

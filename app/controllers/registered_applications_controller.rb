@@ -48,7 +48,11 @@ class RegisteredApplicationsController < ApplicationController
 
   def show
       @registered_application = RegisteredApplication.find(params[:id])
+      
+      @events = @registered_application.events.group_by(&:name)
+      @events = Hash[ @events.sort_by { |key, val| key } ]
       render :show
+      
   end
   
 end

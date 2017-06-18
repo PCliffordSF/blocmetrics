@@ -1,16 +1,24 @@
  <div>
    <h1><%= @registered_application.name %></h1><br>
    <% user = User.find_by id: @registered_application.user_id %>
-     <small>
+     <small class="underline">
        submitted <%= time_ago_in_words(@registered_application.created_at) %> ago by <%= user.email %>
      </small>
+     <br></br>
  </div>
  <div class="row">
    <div class="col-md-8">
      <p><%= @registered_application.name %></p>
+     
      <% url = 'https://' +  @registered_application.url %>
      <p><%= link_to(@registered_application.url, url) %></p>
-     
+     <br></br>
+    
+   <p>These are the <%= @events.count %> events associated with this application</p> 
+   <% @events.each do |event| %>
+     <p><%= event[0] %></p>
+   
+   <% end %>
    </div>
      <div class="col-md-8">
        <%= link_to "Exit", root_path, class: 'btn btn-warning' %>

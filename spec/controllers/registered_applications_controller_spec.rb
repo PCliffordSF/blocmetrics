@@ -2,6 +2,13 @@ require 'rails_helper'
 
 RSpec.describe RegisteredApplicationsController, type: :controller do
 
+  let(:user) {User.create(email: "test@mail.com", password: "password", confirmed_at: Time.now) }
+  let(:registered_application) {RegisteredApplication.create(user_id: user.id, name: 'Name', url: 'url@url.com') }
+
+  # before :each do 
+  #   sign_in user 
+  # end
+  
   describe "GET #new" do
     it "returns http success" do
       get :new
@@ -9,31 +16,20 @@ RSpec.describe RegisteredApplicationsController, type: :controller do
     end
   end
 
-  describe "GET #create" do
-    it "returns http success" do
-      get :create
-      expect(response).to have_http_status(:success)
+  describe "POST #create" do
+    it "increases the number of RegisteredApplications by 1" do
+      expect{ post :create, user_id: user.id, registered_application: {name: "Name", url: "me@me.com"} }.to change(RegisteredApplication,:count).by(1)
     end
   end
 
-  describe "GET #update" do
-    it "returns http success" do
-      get :update
-      expect(response).to have_http_status(:success)
-    end
-  end
 
-  describe "GET #edit" do
-    it "returns http success" do
-      get :edit
-      expect(response).to have_http_status(:success)
-    end
-  end
 
-  describe "GET #destroy" do
+
+  describe "DELETE #destroy" do
     it "returns http success" do
-      get :destroy
-      expect(response).to have_http_status(:success)
+      delete :destroy, user_id: user.id, id: registered_application.id 
+      count = RegisteredApplication.where({id: registered_application.id}).size
+      expect(count).to eq 0
     end
   end
 
@@ -46,9 +42,8 @@ RSpec.describe RegisteredApplicationsController, type: :controller do
 
   describe "GET #show" do
     it "returns http success" do
-      get :show
+      get :show, id: registered_application.id
       expect(response).to have_http_status(:success)
     end
   end
-
 end

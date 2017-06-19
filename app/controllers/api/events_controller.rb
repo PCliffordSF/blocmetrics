@@ -20,6 +20,7 @@
 
         if registered_application
             @new_event = Event.new(event_params)
+            
             @new_event.registered_application_id = registered_application.id
             if @new_event.save
                 render json: @new_event, status: :created
